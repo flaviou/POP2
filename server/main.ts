@@ -1,4 +1,14 @@
-import { Main } from "./imports/server-main/main";
+import { Meteor } from 'meteor/meteor';
 
-const mainInstance = new Main();
-mainInstance.start();
+import { loadParties } from './imports/fixtures/parties';
+import { loadTeams } from './imports/fixtures/teams';
+
+import './imports/publications/parties';
+import './imports/publications/users';
+import '../both/methods/parties.methods';
+import './imports/publications/images';
+
+Meteor.startup(() => {
+  loadParties();
+  loadTeams();
+});

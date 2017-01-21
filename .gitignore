@@ -1,7 +1,5 @@
-node_modules/
-.meteor/local
+node_modules
 npm-debug.log
-typings
 .idea
-build
-dist
+.meteor/local
+
