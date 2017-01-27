@@ -2,8 +2,6 @@ import { Parties } from '../../../both/collections/parties.collection';
 import { Party } from '../../../both/models/party.model';
 
 export function loadParties() {
-   console.log('loadPartiesx');
-
   if (Parties.find().cursor.count() === 0) {
     const parties: Party[] = [{
       name: 'Dubstep-Free Zone',
