@@ -1,0 +1,54 @@
+.players-list-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  width: 100%;
+  display: table;
+
+  .players-list {
+    display: table-cell;
+    width: 50%;
+    vertical-align: top;
+
+    .pagination {
+      display: inline;
+      text-align: center;
+    }
+
+    .filter-card {
+      margin: 20px;
+    }
+
+    .player-card {
+      margin: 20px;
+      position: relative;
+
+      .player-name {
+        color: black;
+        text-decoration: none;
+      }
+    }
+
+    .player-points-container {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+
+      .player-points-sum {
+        display: inline-block;
+        width: 50px;
+        text-align: center;
+
+        .player-points-amount {
+          font-size: 24px;
+        }
+
+        .player-points-title {
+          font-size: 13px;
+          color: #aaa;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<div class="players-list-container">
+  <div class="players-list">
+    <md-card class="filter-card">
+      <h3>Filter Players</h3>
+      <form>
+        Sort by name: a
+        <select class="form-control" #sort (change)="changeSortOrder(sort.value)">
+          <option value="1" selected>Ascending</option>
+          <option value="-1">Descending</option>
+        </select>
+      </form>
+      {{ playersSize }}
+
+    </md-card>
+
+    <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
+    <md-card *ngFor="let player of players | async" class="player-card">
+      <h2 class="player-name">{{player.FirstName}} {{player.LastName}} #{{player.JerseyNumber}}</h2> 
+      {{player.Position | positionFormatter}} {{player.TeamName}} 
+      <div class="player-points-container">
+        <div class="player-points-sum">
+          <div class="player-points-amount">{{player.RegularSeason.Goals}}</div>
+          <div class="player-points-title">Goals</div>
+        </div>
+        <div class="player-points-sum">
+          <div class="player-points-amount">{{player.RegularSeason.Assists}}</div>
+          <div class="player-points-title">Assists</div>
+        </div>
+        <div class="player-points-sum">
+          <div class="player-points-amount">{{player.RegularSeason.Points}}</div>
+          <div class="player-points-title">Points</div>
+        </div>
+      </div>
+    </md-card>
+    <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
+  </div>
+</div>
