@@ -10,9 +10,9 @@ interface Options {
 Meteor.publish('players', function(options: Options) {
   const selector = buildQuery.call(this, null);
 
-  Counts.publish(this, 'numberOfPlayers', Players.collection.find(), { noReady: true });
+  Counts.publish(this, 'numberOfPlayers', Players.collection.find(selector), { noReady: true });
 
-  return Players.find();
+  return Players.find(selector, options);
 });
 
 Meteor.publish('player', function(playerId: string) {
@@ -23,8 +23,7 @@ Meteor.publish('player', function(playerId: string) {
 function buildQuery(playerId?: string): Object {
   const isAvailable = {
     $or: [{
-      // party is public
-      public: true
+      "RegularSeason.Points": {$gt:"0"}
     }]
   };
 

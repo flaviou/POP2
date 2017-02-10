@@ -1,7 +1,6 @@
 <div class="players-list-container">
   <div class="players-list">
     <md-card class="filter-card">
-      <h3>Filter Players</h3>
       <form>
         Sort by name: a
         <select class="form-control" #sort (change)="changeSortOrder(sort.value)">
@@ -14,9 +13,13 @@
     </md-card>
 
     <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
-    <md-card *ngFor="let player of players | async" class="player-card">
-      <h2 class="player-name">{{player.FirstName}} {{player.LastName}} #{{player.JerseyNumber}}</h2> 
-      {{player.Position | positionFormatter}} {{player.TeamName}} 
+    <md-list>
+
+      <md-list-item *ngFor="let player of players | async" class="player-card">
+      <h2 md-line>{{player.TeamName}}</h2>
+      <h1 md-line><b>{{player.FirstName}} {{player.LastName}}</b> #{{player.JerseyNumber}}</h1> 
+      <h3 md-line>{{player.Position | positionFormatter}}</h3>
+      <p md-line>
       <div class="player-points-container">
         <div class="player-points-sum">
           <div class="player-points-amount">{{player.RegularSeason.Goals}}</div>
@@ -31,7 +34,8 @@
           <div class="player-points-title">Points</div>
         </div>
       </div>
-    </md-card>
+      </p>
+    </md-list>
     <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
   </div>
 </div>

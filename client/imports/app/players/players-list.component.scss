@@ -8,7 +8,7 @@
 
   .players-list {
     display: table-cell;
-    width: 50%;
+    width: 100%;
     vertical-align: top;
 
     .pagination {
@@ -28,12 +28,11 @@
         color: black;
         text-decoration: none;
       }
-    }
+    
 
     .player-points-container {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
+      position: relative;
+      width: 100%;
 
       .player-points-sum {
         display: inline-block;
@@ -41,7 +40,7 @@
         text-align: center;
 
         .player-points-amount {
-          font-size: 24px;
+          font-size: 20px;
         }
 
         .player-points-title {
@@ -49,6 +48,7 @@
           color: #aaa;
         }
       }
+    }
     }
   }
 }
