@@ -54,8 +54,12 @@ export class PlayersListComponent implements OnInit, OnDestroy {
     ).subscribe(([pageSize, curPage, nameOrder]) => {
       const options: Options = {
         limit: pageSize as number,
+<<<<<<< HEAD
         skip: ((curPage as number) - 1) * (pageSize as number),
         sort: {"TeamName": 1, "FirstName": 1, "LastName": 1}
+=======
+        skip: ((curPage as number) - 1) * (pageSize as number)
+>>>>>>> e0578be2d7dc50a9c093b04bf444664a7f105b39
       };
 
       this.paginationService.setCurrentPage(this.paginationService.defaultId, curPage as number);
@@ -65,10 +69,14 @@ export class PlayersListComponent implements OnInit, OnDestroy {
       }
       
       this.playersSub = MeteorObservable.subscribe('players', options).subscribe(() => {
+<<<<<<< HEAD
         this.players = Players.find({}, {
           sort: {
             "TeamName": 1, "FirstName":1, "LastName": 1}
           }).zone();      
+=======
+        this.players = Players.find({}, options).zone();      
+>>>>>>> e0578be2d7dc50a9c093b04bf444664a7f105b39
       });
     });
 

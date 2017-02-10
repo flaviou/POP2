@@ -12,7 +12,11 @@ Meteor.publish('players', function(options: Options) {
 
   Counts.publish(this, 'numberOfPlayers', Players.collection.find(selector), { noReady: true });
 
+<<<<<<< HEAD
   return Players.find(selector, options);
+=======
+  return Players.find(selector);
+>>>>>>> e0578be2d7dc50a9c093b04bf444664a7f105b39
 });
 
 Meteor.publish('player', function(playerId: string) {
