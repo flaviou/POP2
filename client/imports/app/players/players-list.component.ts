@@ -41,6 +41,7 @@ export class PlayersListComponent implements OnInit, OnDestroy {
   playersSize: number = 0;
   autorunSub: Subscription;
   user: Meteor.User;
+  sortCriteria: Subject<string> = new Subject<string>();
 
   constructor(
     private paginationService: PaginationService
@@ -50,16 +51,13 @@ export class PlayersListComponent implements OnInit, OnDestroy {
     this.optionsSub = Observable.combineLatest(
       this.pageSize,
       this.curPage,
-      this.nameOrder
-    ).subscribe(([pageSize, curPage, nameOrder]) => {
+      this.nameOrder,
+      this.sortCriteria
+    ).subscribe(([pageSize, curPage, nameOrder, sortCriteria]) => {
       const options: Options = {
         limit: pageSize as number,
-<<<<<<< HEAD
         skip: ((curPage as number) - 1) * (pageSize as number),
-        sort: {"TeamName": 1, "FirstName": 1, "LastName": 1}
-=======
-        skip: ((curPage as number) - 1) * (pageSize as number)
->>>>>>> e0578be2d7dc50a9c093b04bf444664a7f105b39
+        sort: { [sortCriteria]: nameOrder as number }
       };
 
       this.paginationService.setCurrentPage(this.paginationService.defaultId, curPage as number);
@@ -69,14 +67,10 @@ export class PlayersListComponent implements OnInit, OnDestroy {
       }
       
       this.playersSub = MeteorObservable.subscribe('players', options).subscribe(() => {
-<<<<<<< HEAD
         this.players = Players.find({}, {
           sort: {
-            "TeamName": 1, "FirstName":1, "LastName": 1}
+            [sortCriteria]: nameOrder}
           }).zone();      
-=======
-        this.players = Players.find({}, options).zone();      
->>>>>>> e0578be2d7dc50a9c093b04bf444664a7f105b39
       });
     });
 
@@ -90,6 +84,7 @@ export class PlayersListComponent implements OnInit, OnDestroy {
     this.pageSize.next(10);
     this.curPage.next(1);
     this.nameOrder.next(1);
+    this.sortCriteria.next('LastName');
 
     this.autorunSub = MeteorObservable.autorun().subscribe(() => {
       this.playersSize = Counts.get('numberOfPlayers');
@@ -107,6 +102,10 @@ export class PlayersListComponent implements OnInit, OnDestroy {
 
   changeSortOrder(nameOrder: string): void {
     this.nameOrder.next(parseInt(nameOrder));
+  }
+
+  changeSort(sortBy: string): void {
+    this.sortCriteria.next([sortBy]);
   }
 
   ngOnDestroy() {
