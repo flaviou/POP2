@@ -67,24 +67,38 @@ export class PlayersListComponent implements OnInit, OnDestroy {
       }
       
       this.playersSub = MeteorObservable.subscribe('players', options).subscribe(() => {
+        sortCriteriaDoc = {};
+        switch (sortCriteria[0]) {
+          case "TeamName":
+            sortCriteriaDoc = {TeamName: nameOrder, LastName: 1, FirstName: 1};
+            break;
+          case "LastName":
+            sortCriteriaDoc = {LastName: nameOrder, FirstName: 1};
+            break;
+          case "RegularSeason.Points":
+            sortCriteriaDoc = {"RegularSeason.Points": nameOrder, TeamName: 1, LastName: 1, FirstName: 1};
+            break;
+          case "Position":
+            sortCriteriaDoc = {Position: nameOrder, TeamName: 1, LastName: 1, FirstName: 1};
+            break;
+        }
         this.players = Players.find({}, {
-          sort: {
-            [sortCriteria]: nameOrder}
+          sort: sortCriteriaDoc
           }).zone();      
       });
     });
 
     this.paginationService.register({
       id: this.paginationService.defaultId,
-      itemsPerPage: 10,
+      itemsPerPage: 25,
       currentPage: 1,
       totalItems: this.playersSize
     });
 
-    this.pageSize.next(10);
+    this.pageSize.next(25);
     this.curPage.next(1);
     this.nameOrder.next(1);
-    this.sortCriteria.next('LastName');
+    this.sortCriteria.next(["TeamName"]);
 
     this.autorunSub = MeteorObservable.autorun().subscribe(() => {
       this.playersSize = Counts.get('numberOfPlayers');
