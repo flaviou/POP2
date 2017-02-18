@@ -2,17 +2,15 @@
   <div class="players-list">
     <md-card class="filter-card">
       <form>
-        Sort by:
+        <md-slide-toggle color="primary" checked="true" (change)="changeOrder($event.checked)">
+          Sort in Ascending Order
+        </md-slide-toggle>
         <md-button-toggle-group name="sortOrder"">
           <md-button-toggle value="TeamName" checked="true" class="filter-button" #teamButton (change)="changeSort(teamButton.value)">Team</md-button-toggle>
           <md-button-toggle value="LastName" class="filter-button" #nameButton (change)="changeSort(nameButton.value)">Name</md-button-toggle>
           <md-button-toggle value="RegularSeason.Points" class="filter-button" #pointsButton (change)="changeSort(pointsButton.value)">Points</md-button-toggle>
           <md-button-toggle value="Position" class="filter-button" #positionButton (change)="changeSort(positionButton.value)">Position</md-button-toggle>
         </md-button-toggle-group>
-        <select class="form-control" #sort (change)="changeSortOrder(sort.value)">
-          <option value="1" selected>Ascending</option>
-          <option value="-1">Descending</option>
-        </select>
       </form>
       {{ playersSize }}
 

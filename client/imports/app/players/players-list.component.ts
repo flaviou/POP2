@@ -14,7 +14,6 @@ import { Player } from '../../../../both/models/player.model';
 
 import template from './players-list.component.html';
 import style from './players-list.component.scss';
-import pipe from './players-list.pipe.ts';
 
 interface Pagination {
   limit: number;
@@ -41,7 +40,7 @@ export class PlayersListComponent implements OnInit, OnDestroy {
   playersSize: number = 0;
   autorunSub: Subscription;
   user: Meteor.User;
-  sortCriteria: Subject<string> = new Subject<string>();
+  sortCriteria: Subject<string[]> = new Subject<string[]>();
 
   constructor(
     private paginationService: PaginationService
@@ -67,7 +66,7 @@ export class PlayersListComponent implements OnInit, OnDestroy {
       }
       
       this.playersSub = MeteorObservable.subscribe('players', options).subscribe(() => {
-        sortCriteriaDoc = {};
+        var sortCriteriaDoc = {};
         switch (sortCriteria[0]) {
           case "TeamName":
             sortCriteriaDoc = {TeamName: nameOrder, LastName: 1, FirstName: 1};
@@ -114,8 +113,8 @@ export class PlayersListComponent implements OnInit, OnDestroy {
     this.curPage.next(page);
   }
 
-  changeSortOrder(nameOrder: string): void {
-    this.nameOrder.next(parseInt(nameOrder));
+  changeOrder(value: boolean): void {
+    this.nameOrder.next(value ? 1 : -1);
   }
 
   changeSort(sortBy: string): void {

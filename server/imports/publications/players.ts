@@ -23,7 +23,7 @@ Meteor.publish('player', function(playerId: string) {
 function buildQuery(playerId?: string): Object {
   const isAvailable = {
     $or: [{
-      "RegularSeason.Points": {$gt:"0"}
+      "RegularSeason.Points": {$gt: 0}
     }]
   };
 

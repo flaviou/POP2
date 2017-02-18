@@ -14,6 +14,7 @@ import { SHARED_DECLARATIONS } from './shared';
 import { MaterialModule } from "@angular/material";
 import { MdGridListModule } from '@angular2-material/gridlist/gridlist';
 import { MdLisTModule } from '@angular2-material/list/list';
+import { MdRadioModule } from '@angular2-material/radio';
 import { AUTH_DECLARATIONS } from "./auth/index";
 import { FileDropModule } from "angular2-file-drop";
 
