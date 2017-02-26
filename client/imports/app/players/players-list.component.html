@@ -5,7 +5,7 @@
         <md-slide-toggle color="primary" checked="true" (change)="changeOrder($event.checked)">
           Sort in Ascending Order
         </md-slide-toggle>
-        <md-button-toggle-group name="sortOrder"">
+        <md-button-toggle-group name="sortOrder">
           <md-button-toggle value="TeamName" checked="true" class="filter-button" #teamButton (change)="changeSort(teamButton.value)">Team</md-button-toggle>
           <md-button-toggle value="LastName" class="filter-button" #nameButton (change)="changeSort(nameButton.value)">Name</md-button-toggle>
           <md-button-toggle value="RegularSeason.Points" class="filter-button" #pointsButton (change)="changeSort(pointsButton.value)">Points</md-button-toggle>

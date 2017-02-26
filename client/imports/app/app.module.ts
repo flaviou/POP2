@@ -9,11 +9,13 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AppComponent } from './app.component';
 import { routes, ROUTES_PROVIDERS } from './app.routes';
 import { PLAYERS_DECLARATIONS } from './players';
+import { PICKS_DECLARATIONS } from './picks';
 import { PARTIES_DECLARATIONS } from './parties';
 import { SHARED_DECLARATIONS } from './shared';
 import { MaterialModule } from "@angular/material";
 import { MdGridListModule } from '@angular2-material/gridlist/gridlist';
 import { MdLisTModule } from '@angular2-material/list/list';
+import { MdProgressCircle } from '@angular2-material/progress-circle';
 import { MdRadioModule } from '@angular2-material/radio';
 import { AUTH_DECLARATIONS } from "./auth/index";
 import { FileDropModule } from "angular2-file-drop";
@@ -35,6 +37,7 @@ import { FileDropModule } from "angular2-file-drop";
   declarations: [
     AppComponent,
     ...PLAYERS_DECLARATIONS,
+    ...PICKS_DECLARATIONS,
     ...PARTIES_DECLARATIONS,
     ...SHARED_DECLARATIONS,
     ...AUTH_DECLARATIONS

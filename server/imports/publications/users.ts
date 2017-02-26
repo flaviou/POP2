@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-
 import { Parties } from '../../../both/collections/parties.collection';
+import { Picks } from '../../../both/collections/picks.collection';
 
 Meteor.publish('uninvited', function (partyId: string) {
   const party = Parties.findOne(partyId);
@@ -8,11 +8,13 @@ Meteor.publish('uninvited', function (partyId: string) {
   if (!party) {
     throw new Meteor.Error('404', 'No such party!');
   }
-
   return Meteor.users.find({
     _id: {
       $nin: party.invited || [],
       $ne: this.userId
     }
   });
+});
+Meteor.publish('users', function () {
+  return Meteor.users.find({});
 });

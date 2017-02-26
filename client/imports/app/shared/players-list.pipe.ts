@@ -26,3 +26,4 @@ export class PositionFormatterPipe implements PipeTransform {
         return position;
     }
 }
+
