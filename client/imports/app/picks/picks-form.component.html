@@ -1,0 +1,28 @@
+<div class="form-container">
+  <div class="container-background">
+    <div class="form-content">
+      <div class="form-center">
+        <h1>Is your team missing?</h1>
+        <h2>Pick your team now!</h2>
+      </div>
+      <div class="form-center">
+        <form *ngIf="user" [formGroup]="addForm" (ngSubmit)="addPick(); upload.reset();">
+          <div style="display: table-row">
+            <div class="form-inputs">
+              <md-input dividerColor="accent" formControlName="name" placeholder="Team name" maxlength="20" #teamName>
+                <md-hint align="end">{{teamName.characterCount}} / 20</md-hint>
+              </md-input>
+              <br/>
+              <md-checkbox formControlName="public">Show roster to public?</md-checkbox>
+              <br/>
+              <button color="accent" md-raised-button type="submit">Add my team!</button>
+            </div>
+          </div>
+        </form>
+        <div *ngIf="!user">
+          Please login in order to pick your team!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

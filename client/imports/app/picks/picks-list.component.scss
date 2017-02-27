@@ -1,0 +1,51 @@
+.picks-list-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  width: 100%;
+  display: table;
+
+  .picks-list {
+    display: table-cell;
+    width: 100%;
+    vertical-align: top;
+
+    .pick-card {
+      border-radius: 10px;
+      display: table;
+      height: 48px;
+      position: relative;
+      width: 100%;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+
+      .pick-name {
+        color: black;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: normal;
+        vertical-align: middle;
+      }
+
+      .edit-icons-container {
+        display: inline-block;
+        float: right;
+        position: relative;
+        width: 115px;
+
+        .edit-pick {
+          display: inline-block;
+          width: 40px;
+        }
+
+        .remove-pick {
+          display: inline-block;
+          margin: 10px 0px 0px;
+          width: 40px;
+        }
+      }
+    }
+  }
+}
