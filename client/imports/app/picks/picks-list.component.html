@@ -4,7 +4,7 @@
     <md-list>
       <md-list-item *ngFor="let pick of picks | async" class="pick-card">
           <h2 md-line>
-            <a class="pick-name" *ngIf="pick.public" [routerLink]="['/pick', pick._id]">{{pick.name}}</a>
+            <a class="pick-name" *ngIf="pick.public" [routerLink]="['/pick-edit', pick._id]">{{pick.name}}</a>
             <span class="pick-name" *ngIf!="pick.public">{{pick.name}}</span>
           </h2>
           <h3 md-line>
@@ -15,9 +15,11 @@
             </ng-container>
           </h3>
           <div class="edit-icons-container">
-            <button class="edit-pick" md-icon-button *ngIf="isOwner(pick)" (click)="removePick(pick)">
-              <md-icon class="md-24">edit</md-icon>
-            </button>
+            <a[routerLink]="['/pick-edit', pick._id]" *ngIf="isOwner(pick)">
+              <button class="edit-pick" md-icon-button>
+                <md-icon class="md-24">edit</md-icon>
+              </button>
+            </a>
             <button class="remove-pick" md-icon-button *ngIf="isOwner(pick)" (click)="removePick(pick)">
               <md-icon class="md-24">delete</md-icon>
             </button>

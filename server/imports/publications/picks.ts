@@ -13,22 +13,14 @@ Meteor.publish('picks', function(options: Options) {
 });
 
 Meteor.publish('pick', function(pickId: string) {
-  return Picks.find(buildQuery.call(this, pickId));
+  return Picks.find({_id: pickId});
 });
 
 
 function buildQuery(pickId?: string): Object {
-  const isAvailable = {};
 
   if (pickId) {
-    return {
-      // only single pick
-      $and: [{
-          _id: pickId
-        },
-        isAvailable
-      ]
-    };
+    return { _id: pickId };
   }
 
 
