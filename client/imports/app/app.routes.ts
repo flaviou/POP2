@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { PlayersListComponent } from './players/players-list.component';
 import { PicksListComponent } from './picks/picks-list.component';
+import { PickDetailComponent } from './picks/pick-detail.component';
 import { PickEditComponent } from './picks/pick-edit.component';
 import { PartiesListComponent } from './parties/parties-list.component';
 import { PartyDetailsComponent } from './parties/party-details.component';
@@ -13,6 +14,7 @@ import { RecoverComponent } from "./auth/recover.component";
 export const routes: Route[] = [
   { path: 'player', component: PlayersListComponent },
   { path: '', component: PicksListComponent },
+  { path: 'pick-detail/:pickId', component: PickDetailComponent },
   { path: 'pick-edit/:pickId', component: PickEditComponent, canActivate: ['canActivateForLoggedIn'] },
   { path: 'party', component: PartiesListComponent },
   { path: 'party/:partyId', component: PartyDetailsComponent, canActivate: ['canActivateForLoggedIn'] },

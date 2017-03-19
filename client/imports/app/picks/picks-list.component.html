@@ -1,31 +1,41 @@
 <picks-form></picks-form>
-<div class="picks-list-container">
-  <div class="picks-list">
-    <md-list>
-      <md-list-item *ngFor="let pick of picks | async" class="pick-card">
-          <h2 md-line>
-            <a class="pick-name" *ngIf="pick.public" [routerLink]="['/pick-edit', pick._id]">{{pick.name}}</a>
-            <span class="pick-name" *ngIf!="pick.public">{{pick.name}}</span>
-          </h2>
-          <h3 md-line>
-            <ng-container *ngFor="let user of users | async">
-              <ng-container *ngIf="user._id == pick.owner">
-                <span>{{ user | displayName }}</span>
-              </ng-container>
-            </ng-container>
-          </h3>
-          <div class="edit-icons-container">
-            <a[routerLink]="['/pick-edit', pick._id]" *ngIf="isOwner(pick)">
-              <button class="edit-pick" md-icon-button>
-                <md-icon class="md-24">edit</md-icon>
-              </button>
-            </a>
-            <button class="remove-pick" md-icon-button *ngIf="isOwner(pick)" (click)="removePick(pick)">
-              <md-icon class="md-24">delete</md-icon>
-            </button>
-          </span>
-      </md-list-item>
-    </md-list>
-
-  </div>
+<div id="header">
+    <div class="container">
+        <div class="fill-space"></div>
+        <div class="leaderboard">
+          <md-list>
+            <md-list-item *ngFor="let pick of picks | async">
+              <a *ngIf="pick.public" [routerLink]="['/pick-detail', pick._id]" style="text-decoration:none; width:150px">
+                <div class="pick-name">{{pick.name}}</div>
+                <div class="pick-owner">{{pick.owner}}</div>
+              </a> 
+              <span class="pick-points-container">
+                <span class="pick-points-sum">
+                  <div class="pick-points-amount">0</div>
+                  <div class="pick-points-title">Goals<div>
+                </span>
+                <span class="pick-points-sum">
+                  <div class="pick-points-amount">0</div>
+                  <div class="pick-points-title">Assists<div>
+                </span>
+                <span class="pick-points-sum">
+                  <div class="pick-points-amount">0</div>
+                  <div class="pick-points-title">Points<div>
+                </span>
+              </span>
+              <div class="edit-icons-container">
+                <a[routerLink]="['/pick-edit', pick._id]" *ngIf="isOwner(pick)" style="text-decoration:none;">
+                  <button class="edit-pick" md-icon-button>
+                    <md-icon class="md-24">edit</md-icon>
+                  </button>
+                </a>
+                <button class="remove-pick" md-icon-button *ngIf="isOwner(pick)" (click)="removePick(pick)">
+                  <md-icon class="md-24">delete</md-icon>
+                </button>
+              </div>
+            </md-list-item>
+          </md-list>
+        </div>
+        <div class="fill-space"></div>
+    </div>
 </div>

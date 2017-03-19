@@ -34,7 +34,7 @@ export class PicksFormComponent implements OnInit {
     if (this.addForm.valid) {
       Picks.insert({
         name: this.addForm.value.name,
-        public: this.addForm.value.public,
+        public: true,
         owner: Meteor.userId()
       });
 

@@ -1,52 +1,82 @@
-.picks-list-container {
-  align-items: center;
-  display: flex;
-  flex-flow: row wrap;
-  margin: 0 auto;
-  width: 100%;
+#header {
+  background-color: primary;
+  width:100%;
+}
+
+.container {
   display: table;
+  width: 100%;
+}
 
-  .picks-list {
-    display: table-cell;
-    width: 100%;
-    vertical-align: top;
+.leaderboard {
+background-color: yellow;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: white;
+  width: 350px;
+  padding: 0 5px 0 5px;
 
-    .pick-card {
-      border-radius: 10px;
-      display: table;
-      height: 48px;
-      position: relative;
-      width: 100%;
-      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+  .pick-name {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: normal;
+    margin: 5px 5px 0px 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
 
-      .pick-name {
-        color: black;
-        display: inline-block;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 15px;
-        line-height: normal;
-        vertical-align: middle;
+  .pick-owner {
+    font-size: 13px;
+    color: #aaa;
+    display: inline-block;
+    margin: 0px 5px 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .pick-points-container {
+    width: 160px;
+
+    .pick-points-sum {
+      display: inline-block;
+      width: 50px;
+      text-align: center;
+
+      .pick-points-amount {
+        font-size: 20px;
       }
 
-      .edit-icons-container {
-        display: inline-block;
-        float: right;
-        position: relative;
-        width: 115px;
-
-        .edit-pick {
-          color: black;
-          display: inline-block;
-          width: 40px;
-        }
-
-        .remove-pick {
-          display: inline-block;
-          margin: 10px 0px 0px;
-          width: 40px;
-        }
+      .pick-points-title {
+        font-size: 13px;
+        color: #aaa;
       }
     }
   }
+
+  .edit-icons-container {
+    float: right;
+    position: relative;
+    width: 85px;
+
+    .edit-pick {
+      color: black;
+      width: 40px;
+    }
+
+    .remove-pick {
+      margin: 5px 0px 0px;
+      width: 40px;
+    }
+  }
 }
+
+.fill-space {
+  background-color: red; 
+  white-space: nowrap;
+  padding:0px;
+}
+
