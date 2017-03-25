@@ -6,7 +6,7 @@
         <h2>Pick your team now!</h2>
       </div>
       <div class="form-center">
-        <form *ngIf="user" [formGroup]="addForm" (ngSubmit)="addPick(); upload.reset();">
+        <form *ngIf="user" [formGroup]="addForm" (ngSubmit)="addPick();">
           <div style="display: table-row">
             <div class="form-inputs">
               <md-input dividerColor="accent" formControlName="name" placeholder="Team name" maxlength="20" #teamName>

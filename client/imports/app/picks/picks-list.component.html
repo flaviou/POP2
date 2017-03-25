@@ -7,7 +7,7 @@
             <md-list-item *ngFor="let pick of picks | async">
               <a *ngIf="pick.public" [routerLink]="['/pick-detail', pick._id]" style="text-decoration:none; width:150px">
                 <div class="pick-name">{{pick.name}}</div>
-                <div class="pick-owner">{{pick.owner}}</div>
+                <div class="pick-owner">{{pick.owner | displayOwnerName}}</div>
               </a> 
               <span class="pick-points-container">
                 <span class="pick-points-sum">

@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Meteor } from 'meteor/meteor';
 import { MeteorObservable } from 'meteor-rxjs';
 import { InjectUser } from "angular2-meteor-accounts-ui";
+import { MdDialog, MdDialogRef } from "@angular/material";
 
 import 'rxjs/add/operator/combineLatest';
 
@@ -13,6 +14,7 @@ import { Picks } from '../../../../both/collections/picks.collection';
 import { Pick } from '../../../../both/models/pick.model';
 import { Users } from '../../../../both/collections/users.collection';
 import { User } from '../../../../both/models/user.model';
+import { MessageBox } from '../shared/messagebox';
 
 import template from './picks-list.component.html';
 import style from './picks-list.component.scss';
@@ -31,9 +33,10 @@ export class PicksListComponent implements OnInit, OnDestroy {
   users: Observable<User>;
   user: Meteor.User;
   ownerSub: Subscription;
-
+  
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MdDialog
   ) {}
 
   ngOnInit() {
@@ -54,6 +57,7 @@ export class PicksListComponent implements OnInit, OnDestroy {
             name: nameOrder
           }
         }).zone();
+
       });
     });
 
@@ -69,7 +73,15 @@ export class PicksListComponent implements OnInit, OnDestroy {
   }
 
   removePick(pick: Pick): void {
-    Picks.remove(pick._id);
+        Picks.remove(pick._id);
+/*
+    let dialogRef = this.dialog.open(MessageBox);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == "Yes") {
+        Picks.remove(pick._id);
+      }
+    });   
+*/ 
   }
 
   changeSortOrder(nameOrder: string): void {
