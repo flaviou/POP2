@@ -7,11 +7,10 @@ interface Options {
   [key: string]: any;
 }
 
-Meteor.publish('players', function(options: Options) {
-  const selector = buildQuery.call(this, null);
+Meteor.publish('players', function(options: Options, teams?: string){
+  const selector = buildQuery.call(this, null, teams);
 
   Counts.publish(this, 'numberOfPlayers', Players.collection.find(selector), { noReady: true });
-
   return Players.find(selector, options);
 });
 
@@ -20,11 +19,19 @@ Meteor.publish('player', function(playerId: string) {
 });
 
 
-function buildQuery(playerId?: string): Object {
+function buildQuery(playerId?: string, teams?: string): Object {
   const isAvailable = {
-    $or: [{
+    $and: [{
       "RegularSeason.Points": {$gt: 0}
-    }]
+    },
+    {  "TeamName": {$in: ["Capitals", "Penguins", "Blue Jackets", "Canadiens",
+       "Maple Leafs", "Senators", "Blackhawks", "Wild", 
+       "Blues", "Ducks", "Oilers", "Sharks", 
+       "Rangers", "Bruins", "Flames", "Predators"]}
+    },
+    { $or: [{"TeamName": teams}]
+    }
+    ]
   };
 
   if (playerId) {
@@ -39,6 +46,7 @@ function buildQuery(playerId?: string): Object {
   }
 
   // const searchRegEx = { '$regex': '.*' + (location || '') + '.*', '$options': 'i' };
+
 
   return {
     $and: [

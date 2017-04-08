@@ -18,4 +18,8 @@ export class AppComponent {
   logout() {
     Meteor.logout();
   }
+
+  locked(): boolean {
+    return 0;
+  }
 }

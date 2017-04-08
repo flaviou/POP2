@@ -1,11 +1,11 @@
 <div class="form-container">
   <div class="container-background">
     <div class="form-content">
-      <div class="form-center">
+      <div *ngIf="!user" class="form-center">
         <h1>Is your team missing?</h1>
         <h2>Pick your team now!</h2>
       </div>
-      <div class="form-center">
+      <div *ngIf="(numberOfPicks < 5)" class="form-center">
         <form *ngIf="user" [formGroup]="addForm" (ngSubmit)="addPick();">
           <div style="display: table-row">
             <div class="form-inputs">

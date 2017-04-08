@@ -8,18 +8,18 @@
               <a *ngIf="pick.public" [routerLink]="['/pick-detail', pick._id]" style="text-decoration:none; width:150px">
                 <div class="pick-name">{{pick.name}}</div>
                 <div class="pick-owner">{{pick.owner | displayOwnerName}}</div>
-              </a> 
+              </a>
               <span class="pick-points-container">
                 <span class="pick-points-sum">
-                  <div class="pick-points-amount">0</div>
+                  <div class="pick-points-amount">{{ pick.Playoffs.Goals }}</div>
                   <div class="pick-points-title">Goals<div>
                 </span>
                 <span class="pick-points-sum">
-                  <div class="pick-points-amount">0</div>
+                  <div class="pick-points-amount">{{ pick.Playoffs.Assists }}</div>
                   <div class="pick-points-title">Assists<div>
                 </span>
                 <span class="pick-points-sum">
-                  <div class="pick-points-amount">0</div>
+                  <div class="pick-points-amount">{{ pick.Playoffs.Points }}</div>
                   <div class="pick-points-title">Points<div>
                 </span>
               </span>

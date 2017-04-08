@@ -51,10 +51,12 @@ export class PicksListComponent implements OnInit, OnDestroy {
         this.picksSub.unsubscribe();
       }
       
-      this.picksSub = MeteorObservable.subscribe('picks', options).subscribe(() => {
+      this.picksSub = MeteorObservable.subscribe('picks', {}).subscribe(() => {
         this.picks = Picks.find({}, {
           sort: {
-            name: nameOrder
+            "Playoffs.Points": -1,
+            "Playoffs.Goals": -1,
+            "name": 1
           }
         }).zone();
 
@@ -74,14 +76,6 @@ export class PicksListComponent implements OnInit, OnDestroy {
 
   removePick(pick: Pick): void {
         Picks.remove(pick._id);
-/*
-    let dialogRef = this.dialog.open(MessageBox);
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == "Yes") {
-        Picks.remove(pick._id);
-      }
-    });   
-*/ 
   }
 
   changeSortOrder(nameOrder: string): void {
@@ -95,5 +89,6 @@ export class PicksListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.picksSub.unsubscribe();
     this.optionsSub.unsubscribe();
+    this.ownerSub.unsubscribe();
   }
 }

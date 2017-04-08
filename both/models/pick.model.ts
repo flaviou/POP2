@@ -5,8 +5,8 @@ export interface Pick extends CollectionObject {
   owner: string;
   public: boolean;
   players?: string[];
-  cost?: number;
-  points?: TeamPoints; 
+  RegularSeason: TeamPoints;
+  Playoffs: TeamPoints; 
 }
 
 interface TeamPoints {

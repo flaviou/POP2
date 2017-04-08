@@ -1,11 +1,11 @@
 <md-toolbar color="primary">
   <a routerLink="/" class="toolbar-title">Playoff Pool</a>
   <span class="fill-remaining-space"></span>
-  <i class="material-icons">person</i>
-  <div [hidden]="user">
+  <i *ngIf="!locked()" class="material-icons">person</i>
+  <div *ngIf="!locked()" [hidden]="user">
     <a md-button [routerLink]="['/login']" >Login / Sign up</a>
   </div>
-  <div [hidden]="!user">
+  <div *ngIf="!locked()" [hidden]="!user">
     <span class="display-name">{{ user | displayName }}</span>
     <button md-button (click)="logout()">Logout</button>
   </div>

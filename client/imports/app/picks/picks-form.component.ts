@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { MeteorObservable } from 'meteor-rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Counts } from 'meteor/tmeasday:publish-counts';
 import { Picks } from '../../../../both/collections/picks.collection';
 import { InjectUser } from "angular2-meteor-accounts-ui";
 import template from './picks-form.component.html';
@@ -12,6 +15,8 @@ import style from './picks-form.component.scss';
 })
 @InjectUser("user")
 export class PicksFormComponent implements OnInit {
+  numberOfPicks: number = 0;
+  autorunSub: Subscription;
   addForm: FormGroup;
 
   constructor(
@@ -23,6 +28,9 @@ export class PicksFormComponent implements OnInit {
       name: ['', Validators.required],
       public: [false]
     });
+    this.autorunSub = MeteorObservable.autorun().subscribe(() => {
+      this.numberOfPicks = Counts.get('numberOfUserPicks');
+    });
   }
 
   addPick(): void {
@@ -31,11 +39,15 @@ export class PicksFormComponent implements OnInit {
       return;
     }
 
+
     if (this.addForm.valid) {
+      var stats = {Goals: 0, Assists: 0, Points: 0};
       Picks.insert({
         name: this.addForm.value.name,
         public: true,
-        owner: Meteor.userId()
+        owner: Meteor.userId(),
+        RegularSeason: stats,
+        Playoffs: stats
       });
 
       this.addForm.reset();
