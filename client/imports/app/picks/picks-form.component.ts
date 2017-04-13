@@ -16,7 +16,7 @@ import style from './picks-form.component.scss';
 @InjectUser("user")
 export class PicksFormComponent implements OnInit {
   numberOfPicks: number = 0;
-  autorunSub: Subscription;
+//  autorunSub: Subscription;
   addForm: FormGroup;
 
   constructor(
@@ -28,7 +28,8 @@ export class PicksFormComponent implements OnInit {
       name: ['', Validators.required],
       public: [false]
     });
-    this.autorunSub = MeteorObservable.autorun().subscribe(() => {
+//    this.autorunSub = MeteorObservable.autorun().subscribe(() => {
+    MeteorObservable.autorun().subscribe(() => {
       this.numberOfPicks = Counts.get('numberOfUserPicks');
     });
   }
