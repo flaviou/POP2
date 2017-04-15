@@ -1,0 +1,98 @@
+<div class="players-list-container" *ngIf="pick">
+  <div class="players-list">
+    <md-grid-list cols="6" rowHeight="50px">
+      <md-grid-tile [colspan]="4" [rowspan]="2">
+        <md-input [disabled]="!isOwner" [(ngModel)]="pick.name" #teamName maxlength="20">
+          <md-hint align="end">{{teamName.characterCount}} / 20</md-hint>
+        </md-input>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+        <i class="material-icons" color="primary">group</i>
+        <span class="team-info">{{ pick.players ? pick.players.length : 0 }}</span>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+          <button md-mini-fab color="primary" (click)="savePick()">
+            <md-icon>done</md-icon>
+          </button>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+        <i class="material-icons">attach_money</i>
+        <span class="team-info">{{ pick.RegularSeason.Points }}</span>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+        <a routerLink="">
+          <button md-mini-fab color="primary">
+            <md-icon>clear</md-icon>
+          </button>
+        </a>
+      </md-grid-tile>
+    </md-grid-list>
+    <md-card class="filter-card">
+      <md-card-header><h3>Select your players</h3></md-card-header>
+      <md-card-content>
+        <div>
+        <md-button-toggle-group name="teamFilter" style="vertical-algin:top;">
+          <md-button-toggle value="Ducks" checked="false" class="filter-button" #anaButton (change)="changeFilter(anaButton.value)">ANA</md-button-toggle>
+          <md-button-toggle value="Bruins" checked="false" class="filter-button" #bosButton (change)="changeFilter(bosButton.value)">BOS</md-button-toggle>
+          <md-button-toggle value="Flames" checked="false" class="filter-button" #cgyButton (change)="changeFilter(cgyButton.value)">CGY</md-button-toggle>
+          <md-button-toggle value="Blackhawks" checked="false" class="filter-button" #chiButton (change)="changeFilter(chiButton.value)">CHI</md-button-toggle>
+          <md-button-toggle value="Blue Jackets" checked="false" class="filter-button" #colButton (change)="changeFilter(colButton.value)">CBJ</md-button-toggle>
+          <md-button-toggle value="Oilers" checked="false" class="filter-button" #edmButton (change)="changeFilter(edmButton.value)">EDM</md-button-toggle>
+          <md-button-toggle value="Wild" checked="false" class="filter-button" #minButton (change)="changeFilter(minButton.value)">MIN</md-button-toggle>
+          <md-button-toggle value="Canadiens" checked="false" class="filter-button" #mtlButton (change)="changeFilter(mtlButton.value)">MTL</md-button-toggle>
+          <md-button-toggle value="Predators" checked="false" class="filter-button" #nshButton (change)="changeFilter(nshButton.value)">NSH</md-button-toggle>
+          <md-button-toggle value="Rangers" checked="false" class="filter-button" #nyrButton (change)="changeFilter(nyrButton.value)">NYR</md-button-toggle>
+          <md-button-toggle value="Senators" checked="false" class="filter-button" #ottButton (change)="changeFilter(ottButton.value)">OTT</md-button-toggle>
+          <md-button-toggle value="Penguins" checked="false" class="filter-button" #pitButton (change)="changeFilter(pitButton.value)">PIT</md-button-toggle>
+          <md-button-toggle value="Sharks" checked="false" class="filter-button" #sjButton (change)="changeFilter(sjButton.value)">SJ</md-button-toggle>
+          <md-button-toggle value="Blues" checked="false" class="filter-button" #stlButton (change)="changeFilter(stlButton.value)">STL</md-button-toggle>
+          <md-button-toggle value="Maple Leafs" checked="false" class="filter-button" #torButton (change)="changeFilter(torButton.value)">TOR</md-button-toggle>
+          <md-button-toggle value="Capitals" checked="false" class="filter-button" #wasButton (change)="changeFilter(wasButton.value)">WAS</md-button-toggle>
+        </md-button-toggle-group>
+        </div>
+        <div>
+        <md-button-toggle-group name="sortOrder" style="vertical-align:top;">
+          <md-button-toggle value="LastName" class="filter-button" #nameButton (change)="changeSort(nameButton.value)">Name</md-button-toggle>
+          <md-button-toggle value="RegularSeason.Points" class="filter-button" #pointsButton (change)="changeSort(pointsButton.value)">Points</md-button-toggle>
+          <md-button-toggle value="Position" class="filter-button" #positionButton (change)="changeSort(positionButton.value)">Position</md-button-toggle>
+        </md-button-toggle-group>
+        </div>
+        <button md-mini-fab color="primary" (click)="toggleSort()">
+          <md-icon *ngIf="sortAsc">vertical_align_bottom</md-icon>
+          <md-icon *ngIf="!sortAsc">vertical_align_top</md-icon>
+        </button>
+      </md-card-content>
+    </md-card>
+
+    <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
+    <md-list>
+
+      <md-list-item *ngFor="let player of players | async" class="player-card" (click)="togglePlayer(player)">
+      <h2 md-line>{{player.TeamName}}</h2>
+      <h1 md-line>
+        <i class="material-icons" *ngIf="isSelected(player)">check_circle</i>
+        <i class="material-icons" *ngIf="!isSelected(player)">panorama_fish_eye</i>
+        <b>{{player.FirstName}} {{player.LastName}}</b> #{{player.JerseyNumber}}
+      </h1> 
+      <h3 md-line>{{player.Position | positionFormatter}}</h3>
+      <p md-line>
+      <div class="player-points-container">
+        <div class="player-points-sum">
+          <div class="player-points-amount">{{player.RegularSeason.Goals}}</div>
+          <div class="player-points-title">Goals</div>
+        </div>
+        <div class="player-points-sum">
+          <div class="player-points-amount">{{player.RegularSeason.Assists}}</div>
+          <div class="player-points-title">Assists</div>
+        </div>
+        <div class="player-points-sum">
+          <div class="player-points-amount">{{player.RegularSeason.Points}}</div>
+          <div class="player-points-title">Points</div>
+        </div>
+      </div>
+      </p>
+      </md-list-item>
+    </md-list>
+    <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
+  </div>
+</div>
