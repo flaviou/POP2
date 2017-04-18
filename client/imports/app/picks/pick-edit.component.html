@@ -28,46 +28,44 @@
       </md-grid-tile>
     </md-grid-list>
     <md-card class="filter-card">
-      <md-card-header><h3>Select your players</h3></md-card-header>
+      <h4>Select your players</h4>
       <md-card-content>
         <div>
-        <md-button-toggle-group name="teamFilter" style="vertical-algin:top;">
-          <md-button-toggle value="Ducks" checked="false" class="filter-button" #anaButton (change)="changeFilter(anaButton.value)">ANA</md-button-toggle>
-          <md-button-toggle value="Bruins" checked="false" class="filter-button" #bosButton (change)="changeFilter(bosButton.value)">BOS</md-button-toggle>
-          <md-button-toggle value="Flames" checked="false" class="filter-button" #cgyButton (change)="changeFilter(cgyButton.value)">CGY</md-button-toggle>
-          <md-button-toggle value="Blackhawks" checked="false" class="filter-button" #chiButton (change)="changeFilter(chiButton.value)">CHI</md-button-toggle>
-          <md-button-toggle value="Blue Jackets" checked="false" class="filter-button" #colButton (change)="changeFilter(colButton.value)">CBJ</md-button-toggle>
-          <md-button-toggle value="Oilers" checked="false" class="filter-button" #edmButton (change)="changeFilter(edmButton.value)">EDM</md-button-toggle>
-          <md-button-toggle value="Wild" checked="false" class="filter-button" #minButton (change)="changeFilter(minButton.value)">MIN</md-button-toggle>
-          <md-button-toggle value="Canadiens" checked="false" class="filter-button" #mtlButton (change)="changeFilter(mtlButton.value)">MTL</md-button-toggle>
-          <md-button-toggle value="Predators" checked="false" class="filter-button" #nshButton (change)="changeFilter(nshButton.value)">NSH</md-button-toggle>
-          <md-button-toggle value="Rangers" checked="false" class="filter-button" #nyrButton (change)="changeFilter(nyrButton.value)">NYR</md-button-toggle>
-          <md-button-toggle value="Senators" checked="false" class="filter-button" #ottButton (change)="changeFilter(ottButton.value)">OTT</md-button-toggle>
-          <md-button-toggle value="Penguins" checked="false" class="filter-button" #pitButton (change)="changeFilter(pitButton.value)">PIT</md-button-toggle>
-          <md-button-toggle value="Sharks" checked="false" class="filter-button" #sjButton (change)="changeFilter(sjButton.value)">SJ</md-button-toggle>
-          <md-button-toggle value="Blues" checked="false" class="filter-button" #stlButton (change)="changeFilter(stlButton.value)">STL</md-button-toggle>
-          <md-button-toggle value="Maple Leafs" checked="false" class="filter-button" #torButton (change)="changeFilter(torButton.value)">TOR</md-button-toggle>
-          <md-button-toggle value="Capitals" checked="false" class="filter-button" #wasButton (change)="changeFilter(wasButton.value)">WAS</md-button-toggle>
+        <md-button-toggle-group name="teamFilter" style="vertical-algin:top; width:330px; flex-wrap:wrap;">
+          <md-button-toggle value="Ducks" class="filter-button" #anaButton (change)="changeFilter(anaButton.value)" checked>ANA</md-button-toggle>
+          <md-button-toggle value="Bruins" class="filter-button" #bosButton (change)="changeFilter(bosButton.value)">BOS</md-button-toggle>
+          <md-button-toggle value="Flames" class="filter-button" #cgyButton (change)="changeFilter(cgyButton.value)">CGY</md-button-toggle>
+          <md-button-toggle value="Blackhawks" class="filter-button" #chiButton (change)="changeFilter(chiButton.value)">CHI</md-button-toggle>
+          <md-button-toggle value="Blue Jackets" class="filter-button" #colButton (change)="changeFilter(colButton.value)">CBJ</md-button-toggle>
+          <md-button-toggle value="Oilers" class="filter-button" #edmButton (change)="changeFilter(edmButton.value)">EDM</md-button-toggle>
+          <md-button-toggle value="Wild" class="filter-button" #minButton (change)="changeFilter(minButton.value)">MIN</md-button-toggle>
+          <md-button-toggle value="Canadiens" class="filter-button" #mtlButton (change)="changeFilter(mtlButton.value)">MTL</md-button-toggle>
+          <md-button-toggle value="Predators" class="filter-button" #nshButton (change)="changeFilter(nshButton.value)">NSH</md-button-toggle>
+          <md-button-toggle value="Rangers" class="filter-button" #nyrButton (change)="changeFilter(nyrButton.value)">NYR</md-button-toggle>
+          <md-button-toggle value="Senators" class="filter-button" #ottButton (change)="changeFilter(ottButton.value)">OTT</md-button-toggle>
+          <md-button-toggle value="Penguins" class="filter-button" #pitButton (change)="changeFilter(pitButton.value)">PIT</md-button-toggle>
+          <md-button-toggle value="Sharks" class="filter-button" #sjButton (change)="changeFilter(sjButton.value)">SJ</md-button-toggle>
+          <md-button-toggle value="Blues" class="filter-button" #stlButton (change)="changeFilter(stlButton.value)">STL</md-button-toggle>
+          <md-button-toggle value="Maple Leafs" class="filter-button" #torButton (change)="changeFilter(torButton.value)">TOR</md-button-toggle>
+          <md-button-toggle value="Capitals" class="filter-button" #wasButton (change)="changeFilter(wasButton.value)">WAS</md-button-toggle>
         </md-button-toggle-group>
         </div>
         <div>
         <md-button-toggle-group name="sortOrder" style="vertical-align:top;">
-          <md-button-toggle value="LastName" class="filter-button" #nameButton (change)="changeSort(nameButton.value)">Name</md-button-toggle>
-          <md-button-toggle value="RegularSeason.Points" class="filter-button" #pointsButton (change)="changeSort(pointsButton.value)">Points</md-button-toggle>
-          <md-button-toggle value="Position" class="filter-button" #positionButton (change)="changeSort(positionButton.value)">Position</md-button-toggle>
+          <md-button-toggle value="LastName" class="sort-button" #nameButton (change)="changeSort(nameButton.value)">Name</md-button-toggle>
+          <md-button-toggle value="RegularSeason.Points" class="sort-button" #pointsButton (change)="changeSort(pointsButton.value)">Points</md-button-toggle>
+          <md-button-toggle value="Position" class="sort-button" #positionButton (change)="changeSort(positionButton.value)">Position</md-button-toggle>
         </md-button-toggle-group>
-        </div>
         <button md-mini-fab color="primary" (click)="toggleSort()">
           <md-icon *ngIf="sortAsc">vertical_align_bottom</md-icon>
           <md-icon *ngIf="!sortAsc">vertical_align_top</md-icon>
         </button>
+        </div>
       </md-card-content>
     </md-card>
-
-    <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
     <md-list>
 
-      <md-list-item *ngFor="let player of players | async" class="player-card" (click)="togglePlayer(player)">
+      <md-list-item *ngFor="let player of players | async;" class="player-card" (click)="togglePlayer(player)">
       <h2 md-line>{{player.TeamName}}</h2>
       <h1 md-line>
         <i class="material-icons" *ngIf="isSelected(player)">check_circle</i>
@@ -93,6 +91,5 @@
       </p>
       </md-list-item>
     </md-list>
-    <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
   </div>
 </div>

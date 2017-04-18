@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { MeteorObservable } from 'meteor-rxjs';
@@ -51,7 +52,7 @@ export class PickEditComponent implements OnInit, OnDestroy {
   autorunSub: Subscription;
   user: Meteor.User;
   sortAsc: boolean = true;
-  sortCriteria: Subject<string[]> = new Subject<string[]>();
+  sortCriteria: BehaviorSubject<string[]> = new BehaviorSubject<string[]>();
   cMaxPlayers: number;
   cMaxPoints: number;
   selectedTeam: Subject<string> = new Subject<string>();
@@ -99,7 +100,6 @@ export class PickEditComponent implements OnInit, OnDestroy {
       const options: Options = {
         limit: pageSize as number,
         skip: ((curPage as number) - 1) * (pageSize as number),
- //       sort: { [sortCriteria]: nameOrder as number }
         sort: { [sortCriteria]: nameOrder as string }
       };
 
@@ -142,7 +142,7 @@ export class PickEditComponent implements OnInit, OnDestroy {
     this.curPage.next(1);
     this.nameOrder.next(1);
     this.sortCriteria.next(["TeamName"]);
-    this.selectedTeam.next("Flames");
+    this.selectedTeam.next("Ducks");
 
     if (this.autorunSub) {
       this.autorunSub.unsubscribe();
@@ -201,11 +201,6 @@ export class PickEditComponent implements OnInit, OnDestroy {
     } else {
       if ((this.pick.players.length < this.cMaxPlayers) && (this.pick.RegularSeason.Points + parseInt(thisPlayer.RegularSeason.Points) <= this.cMaxPoints)) {
         this.pick.players.push(thisPlayer);
-/*
-        this.pick.RegularSeason.Goals += parseInt(thisPlayer.RegularSeason.Goals);
-        this.pick.RegularSeason.Assists += parseInt(thisPlayer.RegularSeason.Assists);
-        this.pick.RegularSeason.Points += parseInt(thisPlayer.RegularSeason.Points);
-*/
         this.pick.RegularSeason.Goals += Number(thisPlayer.RegularSeason.Goals);
         this.pick.RegularSeason.Assists += Number(thisPlayer.RegularSeason.Assists);
         this.pick.RegularSeason.Points += Number(thisPlayer.RegularSeason.Points);

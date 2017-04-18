@@ -30,10 +30,18 @@
 
     .filter-card {
       margin: 5px 2px;
+      vertical-align: top;
 
       .filter-button {
         font-size: 13px;
         margin: 0px;
+        width: 40px;
+      }
+
+      .sort-button {
+        font-size: 13px;
+        margin: 0px;
+        width: 80px;
       }
     }
 
@@ -69,3 +77,4 @@
     }
   }
 }
+

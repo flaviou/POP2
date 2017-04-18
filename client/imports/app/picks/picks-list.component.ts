@@ -75,7 +75,10 @@ export class PicksListComponent implements OnInit, OnDestroy {
   }
 
   removePick(pick: Pick): void {
-        Picks.remove(pick._id);
+        var x = window.confirm('Confirm deletion?');
+        if (x) {
+          Picks.remove(pick._id);
+        }
   }
 
   changeSortOrder(nameOrder: string): void {
